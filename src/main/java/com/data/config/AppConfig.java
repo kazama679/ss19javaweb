@@ -45,15 +45,15 @@ public class AppConfig {
         return viewResolver;
     }
 
-//    @Bean
-//    public SessionFactory sessionFactory() {
-//        return new org.hibernate.cfg.Configuration()
-//                .configure("hibernate-config.xml")
-//                .buildSessionFactory();
-//    }
-//
-//    @Bean
-//    public EntityManager entityManager() {
-//        return sessionFactory().createEntityManager();
-//    }
+    @Bean
+    public SessionFactory sessionFactory() {
+        return new org.hibernate.cfg.Configuration()
+                .configure("hibernate-config.xml")
+                .buildSessionFactory();
+    }
+
+    @Bean
+    public EntityManager entityManager() {
+        return sessionFactory().createEntityManager();
+    }
 }

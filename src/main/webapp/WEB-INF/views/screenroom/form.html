@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 th:text="${room.id == null ? 'Thêm phòng chiếu' : 'Sửa phòng chiếu'}"></h2>
+<form th:action="@{/screenroom/save}" th:object="${room}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    Tên phòng: <input type="text" th:field="*{roomName}"/><br/>
+    <div th:if="${#fields.hasErrors('roomName')}" th:errors="*{roomName}"></div>
+
+    Sức chứa: <input type="number" th:field="*{capacity}"/><br/>
+    <div th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></div>
+
+    Loại màn hình: <input type="text" th:field="*{screenType}"/><br/>
+    <div th:if="${#fields.hasErrors('screenType')}" th:errors="*{screenType}"></div>
+
+    <button type="submit">Lưu</button>
+</form>
+</body>
+</html>

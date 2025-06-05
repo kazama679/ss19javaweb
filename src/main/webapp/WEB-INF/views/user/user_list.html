@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
-    <h4>List User</h4>
+<h4>List User</h4>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.isActive ? 'Active' : 'Blocked'}"></td>
+        <td>
+            <form th:action="@{'/admin/users/toggle/' + ${user.id}}" method="post">
+                <input type="hidden" name="currentPage" th:value="${currentPage}" />
+                <button type="submit" th:text="${user.isActive ? 'Block' : 'Unblock'}"></button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <button th:if="${currentPage > 1}"
+            th:onclick="'location.href=\'/admin/users?page=' + (${currentPage} - 1) + '\''">
+        Previous
+    </button>
+
+    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+
+    <button th:if="${currentPage < totalPages}"
+            th:onclick="'location.href=\'/admin/users?page=' + (${currentPage} + 1) + '\''">
+        Next
+    </button>
+</div>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Danh sách phòng chiếu</h2>
+<a href="/screenroom/add">Thêm mới</a>
+<table border="1">
+    <tr>
+        <th>Tên phòng</th>
+        <th>Loại màn hình</th>
+        <th>Sức chứa</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.roomName}"></td>
+        <td th:text="${room.screenType}"></td>
+        <td th:text="${room.capacity}"></td>
+        <td th:text="${room.status ? 'Đang hoạt động' : 'Ngừng hoạt động'}"></td>
+        <td>
+            <a th:href="@{'/screenroom/edit/' + ${room.id}}">Sửa</a> |
+            <a th:href="@{'/screenroom/delete/' + ${room.id}}"
+               onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

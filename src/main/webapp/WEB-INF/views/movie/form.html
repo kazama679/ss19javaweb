@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2 th:text="${movie.id == null ? 'Thêm phim' : 'Sửa phim'}"></h2>
+<form th:action="@{${movie.id == null} ? '/movies/add' : '/movies/edit'}"
+      th:object="${movie}" method="post">
+  <p>Tên: <input type="text" th:field="*{title}" /> <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span></p>
+  <p>Đạo diễn: <input type="text" th:field="*{director}" /> <span th:if="${#fields.hasErrors('director')}" th:errors="*{director}"></span></p>
+  <p>Năm phát hành: <input type="number" th:field="*{releaseYear}" /> <span th:errors="*{releaseYear}"></span></p>
+  <p>Thể loại: <input type="text" th:field="*{genre}" /></p>
+  <p>Thời lượng (phút): <input type="number" th:field="*{duration}" /> <span th:errors="*{duration}"></span></p>
+  <p>Ngôn ngữ: <input type="text" th:field="*{language}" /></p>
+  <p>Poster URL: <input type="text" th:field="*{poster}" /> <span th:errors="*{poster}"></span></p>
+  <p><button type="submit">Lưu</button></p>
+</form>
+<a href="/movies">← Quay lại</a>
+</body>
+</html>
